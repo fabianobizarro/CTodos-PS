@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Dependencies;
 using System.Web.Routing;
+using SimpleInjector.Integration.WebApi;
+using CartaoTodos.IoC;
 
 namespace CartaoTodos.WebAPI
 {
@@ -12,6 +15,8 @@ namespace CartaoTodos.WebAPI
         protected void Application_Start()
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
+
+            CartaoTodos.Application.Mapping.RegisterMappings();
         }
     }
 }
