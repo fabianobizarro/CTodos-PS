@@ -10,5 +10,22 @@ namespace CartaoTodos.Data.Config
 {
     public class UsuarioPerfilConfig : EntityTypeConfiguration<UsuarioPerfil>
     {
+        public UsuarioPerfilConfig()
+        {
+            ToTable("USUARIO_PERFIL")
+                .HasKey(p => new { p.IdPerfil, p.IdUsuario });
+
+            Property(p => p.IdUsuario)
+                .HasColumnName("ID_USUARIO")
+                .IsRequired();
+
+            Property(p => p.IdPerfil)
+                .HasColumnName("ID_PERFIL")
+                .IsRequired();
+
+            Property(p=>p.Ativo)
+                .HasColumnName("ATIVO");
+
+        }
     }
 }
