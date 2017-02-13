@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SimpleInjector, Version=3.3.2.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleInjector.3.3.2\lib\net45\SimpleInjector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,7 +44,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DIContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CartaoTodos.Application\CartaoTodos.Application.csproj">
+      <Project>{8e8e42fd-f017-4350-85d6-f7f465ded5ab}</Project>
+      <Name>CartaoTodos.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CartaoTodos.Data\CartaoTodos.Data.csproj">
+      <Project>{3ab13da4-3b23-4602-a667-83fe283ecced}</Project>
+      <Name>CartaoTodos.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CartaoTodos.Domain\CartaoTodos.Domain.csproj">
+      <Project>{93b3bc46-c579-4869-b8ea-b2ed72d7677e}</Project>
+      <Name>CartaoTodos.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
