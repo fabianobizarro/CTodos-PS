@@ -26,6 +26,13 @@ namespace CartaoTodos.Data.Config
             Property(p=>p.Ativo)
                 .HasColumnName("ATIVO");
 
+            HasRequired(p => p.Perfil)
+                .WithMany()
+                .HasForeignKey(p => p.IdPerfil);
+
+            HasRequired(p => p.Usuario)
+                .WithMany()
+                .HasForeignKey(p => p.IdUsuario);
         }
     }
 }

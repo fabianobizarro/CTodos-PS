@@ -40,13 +40,12 @@ namespace CartaoTodos.Data.Migrations
                         ID_PERFIL = c.Int(nullable: false),
                         ID_USUARIO = c.Int(nullable: false),
                         ATIVO = c.Boolean(nullable: false),
-                        Perfil_Id = c.Int(),
                     })
                 .PrimaryKey(t => new { t.ID_PERFIL, t.ID_USUARIO })
-                .ForeignKey("dbo.PERFIL", t => t.Perfil_Id)
+                .ForeignKey("dbo.PERFIL", t => t.ID_PERFIL)
                 .ForeignKey("dbo.USUARIO", t => t.ID_USUARIO)
-                .Index(t => t.ID_USUARIO)
-                .Index(t => t.Perfil_Id);
+                .Index(t => t.ID_PERFIL)
+                .Index(t => t.ID_USUARIO);
             
             CreateTable(
                 "dbo.PERFIL",
@@ -64,9 +63,9 @@ namespace CartaoTodos.Data.Migrations
         {
             DropForeignKey("dbo.OPERACAO_USUARIO", "ID_USUARIO", "dbo.USUARIO");
             DropForeignKey("dbo.USUARIO_PERFIL", "ID_USUARIO", "dbo.USUARIO");
-            DropForeignKey("dbo.USUARIO_PERFIL", "Perfil_Id", "dbo.PERFIL");
-            DropIndex("dbo.USUARIO_PERFIL", new[] { "Perfil_Id" });
+            DropForeignKey("dbo.USUARIO_PERFIL", "ID_PERFIL", "dbo.PERFIL");
             DropIndex("dbo.USUARIO_PERFIL", new[] { "ID_USUARIO" });
+            DropIndex("dbo.USUARIO_PERFIL", new[] { "ID_PERFIL" });
             DropIndex("dbo.OPERACAO_USUARIO", new[] { "ID_USUARIO" });
             DropTable("dbo.PERFIL");
             DropTable("dbo.USUARIO_PERFIL");

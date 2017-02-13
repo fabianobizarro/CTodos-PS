@@ -54,20 +54,16 @@
     <Compile Include="Config\UsuarioConfig.cs" />
     <Compile Include="Config\UsuarioPerfilConfig.cs" />
     <Compile Include="Context\AppContext.cs" />
-    <Compile Include="Migrations\201702121311449_InitialMigration.cs" />
-    <Compile Include="Migrations\201702121311449_InitialMigration.Designer.cs">
-      <DependentUpon>201702121311449_InitialMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201702131900097_InitialMigration.cs" />
+    <Compile Include="Migrations\201702131900097_InitialMigration.Designer.cs">
+      <DependentUpon>201702131900097_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\PerfilRepository.cs" />
+    <Compile Include="Repositories\UsuarioPerfilRepository.cs" />
     <Compile Include="Repositories\UsuarioRepository.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201702121311449_InitialMigration.resx">
-      <DependentUpon>201702121311449_InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -78,6 +74,11 @@
       <Project>{93b3bc46-c579-4869-b8ea-b2ed72d7677e}</Project>
       <Name>CartaoTodos.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201702131900097_InitialMigration.resx">
+      <DependentUpon>201702131900097_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -13,7 +13,7 @@ namespace CartaoTodos.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201702121311449_InitialMigration"; }
+            get { return "201702131900097_InitialMigration"; }
         }
         
         string IMigrationMetadata.Source
