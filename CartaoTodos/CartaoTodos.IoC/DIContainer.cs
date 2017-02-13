@@ -24,14 +24,17 @@ namespace CartaoTodos.IoC
             container.Register(typeof(IBaseService<>), typeof(BaseService<>));
             container.Register<IPerfilService, PerfilService>();
             container.Register<IUsuarioService, UsuarioService>();
+            container.Register<IUsuarioPerfilService, UsuarioPerfilService>();
 
             container.Register(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             container.Register<IPerfilRepository, PerfilRepository>();
             container.Register<IUsuarioRepository, UsuarioRepository>();
+            container.Register<IUsuarioPerfilRepository, UsuarioPerfilRepository>();
 
             container.Register(typeof(IBaseAppService<,>), typeof(BaseAppService<,>));
             container.Register<IUsuarioAppService, UsuarioAppService>();
             container.Register<IPerfilAppService, PerfilAppService>();
+            container.Register<IUsuarioPerfilAppService, UsuarioPerfilAppService>();
 
             return container;
             
