@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Nelibur.ObjectMapper.Bindings;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +11,10 @@ namespace CartaoTodos.Application.ViewModels
 {
     public class UsuarioViewModel
     {
+        public UsuarioViewModel()
+        {
+            Perfis = new List<UsuarioPerfilViewModel>();
+        }
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Este campo é obrigatório")]
@@ -29,7 +35,8 @@ namespace CartaoTodos.Application.ViewModels
         public bool Ativo { get; set; }
         public DateTime DataInclusao { get; set; }
 
-        public ICollection<UsuarioPerfilViewModel> Perfis { get; set; }
-        public ICollection<OperacaoUsuarioViewModel> Operacoes { get; set; }
+        public virtual ICollection<UsuarioPerfilViewModel> Perfis { get; set; }
+
+        public virtual ICollection<OperacaoUsuarioViewModel> Operacoes { get; set; }
     }
 }

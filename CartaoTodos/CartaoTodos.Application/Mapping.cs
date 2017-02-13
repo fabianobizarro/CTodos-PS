@@ -15,15 +15,16 @@ namespace CartaoTodos.Application
         {
             // Model => ViewModel
             TinyMapper.Bind<OperacaoUsuario, OperacaoUsuarioViewModel>();
-            TinyMapper.Bind<Perfil, PerfilViewModel > ();
+            TinyMapper.Bind<Perfil, PerfilViewModel>();
             TinyMapper.Bind<Usuario, UsuarioViewModel>();
             TinyMapper.Bind<UsuarioPerfil, UsuarioPerfilViewModel>();
-            TinyMapper.Bind<IEnumerable<Usuario>, IEnumerable<UsuarioViewModel>>();
 
             // ViewModel => Model
             TinyMapper.Bind<OperacaoUsuarioViewModel, OperacaoUsuario>();
             TinyMapper.Bind<PerfilViewModel, Perfil>();
-            TinyMapper.Bind<UsuarioViewModel, Usuario>();
+            TinyMapper.Bind<UsuarioViewModel, Usuario>(config => {
+                config.Ignore(p => p.Operacoes);
+            });
             TinyMapper.Bind<UsuarioPerfilViewModel, UsuarioPerfil>();
         }
     }
