@@ -16,7 +16,7 @@ namespace CartaoTodos.Domain.Entities
         public bool Ativo { get; set; }
         public DateTime DataInclusao { get; set; }
 
-        public ICollection<UsuarioPerfil> Perfis { get; set; }
-        public ICollection<OperacaoUsuario> Operacoes { get; set; }
+        public virtual ICollection<UsuarioPerfil> Perfis { get; set; }
+        public virtual ICollection<OperacaoUsuario> Operacoes { get; set; }
     }
 }

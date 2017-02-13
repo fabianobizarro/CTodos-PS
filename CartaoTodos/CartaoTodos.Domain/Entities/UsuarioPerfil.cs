@@ -12,8 +12,8 @@ namespace CartaoTodos.Domain.Entities
         public int IdUsuario { get; set; }
         public bool Ativo { get; set; }
 
-        public Perfil Perfil { get; set; }
-        public Usuario Usuario { get; set; }
+        public virtual Perfil Perfil { get; set; }
+        public virtual Usuario Usuario { get; set; }
 
     }
 }
