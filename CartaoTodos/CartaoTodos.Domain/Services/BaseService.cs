@@ -29,7 +29,7 @@ namespace CartaoTodos.Domain.Services
             _repository.Commit();
         }
 
-        public virtual ICollection<TEntity> GetAll()
+        public virtual IEnumerable<TEntity> GetAll()
         {
             return _repository.GetAll();
         }

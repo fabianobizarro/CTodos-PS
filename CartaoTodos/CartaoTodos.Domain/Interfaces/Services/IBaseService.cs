@@ -12,6 +12,6 @@ namespace CartaoTodos.Domain.Interfaces.Services
         void Update(TEntity entity);
         void Delete(TEntity entity);
         TEntity GetEntity(Func<TEntity, bool> predicate);
-        ICollection<TEntity> GetAll();
+        IEnumerable<TEntity> GetAll();
     }
 }
