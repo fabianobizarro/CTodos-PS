@@ -1,0 +1,22 @@
+<h3>Perfis</h3>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Nome</th>
+          <th>Ativo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let perfil of perfis">
+          <td>{{perfil.Id}}</td>
+          <td>{{perfil.Nome}}</td>
+          <td>{{perfil.Ativo ? "Sim" : "Não"}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
