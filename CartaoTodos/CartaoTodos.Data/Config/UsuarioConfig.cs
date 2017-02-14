@@ -49,11 +49,13 @@ namespace CartaoTodos.Data.Config
 
             HasMany(p => p.Perfis)
                 .WithRequired(p => p.Usuario)
-                .HasForeignKey(p => p.IdUsuario);
+                .HasForeignKey(p => p.IdUsuario)
+                .WillCascadeOnDelete();
 
             HasMany(p => p.Operacoes)
                 .WithRequired(p => p.Usuario)
-                .HasForeignKey(p => p.IdUsuario);
+                .HasForeignKey(p => p.IdUsuario)
+                .WillCascadeOnDelete();
         }
     }
 }

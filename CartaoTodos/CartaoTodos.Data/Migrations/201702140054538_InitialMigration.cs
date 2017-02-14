@@ -16,7 +16,7 @@ namespace CartaoTodos.Data.Migrations
                         ID_USUARIO = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID_OPERACAO_ACESSO)
-                .ForeignKey("dbo.USUARIO", t => t.ID_USUARIO)
+                .ForeignKey("dbo.USUARIO", t => t.ID_USUARIO, cascadeDelete: true)
                 .Index(t => t.ID_USUARIO);
             
             CreateTable(
@@ -43,7 +43,7 @@ namespace CartaoTodos.Data.Migrations
                     })
                 .PrimaryKey(t => new { t.ID_PERFIL, t.ID_USUARIO })
                 .ForeignKey("dbo.PERFIL", t => t.ID_PERFIL)
-                .ForeignKey("dbo.USUARIO", t => t.ID_USUARIO)
+                .ForeignKey("dbo.USUARIO", t => t.ID_USUARIO, cascadeDelete: true)
                 .Index(t => t.ID_PERFIL)
                 .Index(t => t.ID_USUARIO);
             

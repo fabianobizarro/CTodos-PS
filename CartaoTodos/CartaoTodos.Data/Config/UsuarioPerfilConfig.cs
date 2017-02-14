@@ -33,6 +33,7 @@ namespace CartaoTodos.Data.Config
             HasRequired(p => p.Usuario)
                 .WithMany()
                 .HasForeignKey(p => p.IdUsuario);
+                
         }
     }
 }
