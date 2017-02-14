@@ -14,6 +14,41 @@ namespace CartaoTodos.Data.Migrations
 
         protected override void Seed(CartaoTodos.Data.Context.AppContext context)
         {
+            if (!context.Perfis.Any(p=>p.Nome == "Administrador"))
+            {
+                context.Perfis.Add(new Domain.Entities.Perfil()
+                {
+                    Nome = "Administrador",
+                    Ativo = true
+                });
+            }
+
+            if (!context.Perfis.Any(p => p.Nome == "Moderador"))
+            {
+                context.Perfis.Add(new Domain.Entities.Perfil()
+                {
+                    Nome = "Moderador",
+                    Ativo = true
+                });
+            }
+
+            if (!context.Perfis.Any(p => p.Nome == "Diretor"))
+            {
+                context.Perfis.Add(new Domain.Entities.Perfil()
+                {
+                    Nome = "Diretor",
+                    Ativo = true
+                });
+            }
+
+            if (!context.Perfis.Any(p => p.Nome == "Operacional"))
+            {
+                context.Perfis.Add(new Domain.Entities.Perfil()
+                {
+                    Nome = "Operacional",
+                    Ativo = true
+                });
+            }
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
