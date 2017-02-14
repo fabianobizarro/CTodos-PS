@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using CartaoTodos.Application.Interfaces;
 using CartaoTodos.Domain.Interfaces.Services;
-using Nelibur.ObjectMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;

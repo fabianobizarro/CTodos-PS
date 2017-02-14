@@ -3,7 +3,6 @@ using CartaoTodos.Application.Interfaces;
 using CartaoTodos.Application.ViewModels;
 using CartaoTodos.Domain.Entities;
 using CartaoTodos.Domain.Interfaces.Services;
-using Nelibur.ObjectMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
