@@ -1,4 +1,5 @@
-﻿using CartaoTodos.Application.ViewModels;
+﻿using AutoMapper;
+using CartaoTodos.Application.ViewModels;
 using CartaoTodos.Domain.Entities;
 using Nelibur.ObjectMapper;
 using System;
@@ -13,19 +14,27 @@ namespace CartaoTodos.Application
     {
         public static void RegisterMappings()
         {
-            // Model => ViewModel
-            TinyMapper.Bind<OperacaoUsuario, OperacaoUsuarioViewModel>();
-            TinyMapper.Bind<Perfil, PerfilViewModel>();
-            TinyMapper.Bind<Usuario, UsuarioViewModel>();
-            TinyMapper.Bind<UsuarioPerfil, UsuarioPerfilViewModel>();
+            Mapper.Initialize(config =>
+            {
 
-            // ViewModel => Model
-            TinyMapper.Bind<OperacaoUsuarioViewModel, OperacaoUsuario>();
-            TinyMapper.Bind<PerfilViewModel, Perfil>();
-            TinyMapper.Bind<UsuarioViewModel, Usuario>(config => {
-                config.Ignore(p => p.Operacoes);
+                // Model => ViewModel    
+                config.CreateMap<OperacaoUsuario, OperacaoUsuarioViewModel>();
+                config.CreateMap<Perfil, PerfilViewModel>();
+                config.CreateMap<Usuario, UsuarioViewModel>();
+                config.CreateMap<UsuarioPerfil, UsuarioPerfilViewModel>();
+                config.CreateMap<UsuarioPerfil, PerfilViewModel>()
+                    .ForMember(member => member.Id, opts => opts.MapFrom(p => p.Perfil.Id))
+                    .ForMember(member => member.Nome, opts => opts.MapFrom(p => p.Perfil.Nome))
+                    .ForMember(member => member.Ativo, opts => opts.MapFrom(p => p.Ativo));
+
+                // ViewModel => Model
+                config.CreateMap<OperacaoUsuarioViewModel, OperacaoUsuario>();
+                config.CreateMap<PerfilViewModel, Perfil>();
+                config.CreateMap<UsuarioViewModel, Usuario>()
+                    .ForMember(m => m.Operacoes, o => o.Ignore());
+                config.CreateMap<UsuarioPerfilViewModel, UsuarioPerfil>();
+
             });
-            TinyMapper.Bind<UsuarioPerfilViewModel, UsuarioPerfil>();
         }
     }
 }
