@@ -17,5 +17,13 @@ namespace CartaoTodos.Application.Services
         {
 
         }
+
+        public override void Update(UsuarioPerfilViewModel viewModel)
+        {
+            var usuarioPerfil = _service.GetEntity(p => p.IdPerfil == viewModel.IdPerfil && p.IdUsuario == viewModel.IdUsuario);
+
+            usuarioPerfil.Ativo = viewModel.Ativo;
+            _service.Update(usuarioPerfil);
+        }
     }
 }

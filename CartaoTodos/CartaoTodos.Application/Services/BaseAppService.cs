@@ -1,4 +1,5 @@
-﻿using CartaoTodos.Application.Interfaces;
+﻿using AutoMapper;
+using CartaoTodos.Application.Interfaces;
 using CartaoTodos.Domain.Interfaces.Services;
 using Nelibur.ObjectMapper;
 using System;
@@ -18,35 +19,35 @@ namespace CartaoTodos.Application.Services
             _service = service;
         }
 
-        public void Add(TViewModel viewModel)
+        public virtual void Add(TViewModel viewModel)
         {
-            var entity = TinyMapper.Map<TViewModel, TEntity>(viewModel);
+            var entity = Mapper.Map<TViewModel, TEntity>(viewModel);
             _service.Add(entity);
         }
 
-        public void Delete(TViewModel viewModel)
+        public virtual void Delete(TViewModel viewModel)
         {
-            var entity = TinyMapper.Map<TViewModel, TEntity>(viewModel);
+            var entity = Mapper.Map<TViewModel, TEntity>(viewModel);
             _service.Delete(entity);
         }
 
-        public IEnumerable<TViewModel> GetAll()
+        public virtual IEnumerable<TViewModel> GetAll()
         {
             var entities = _service.GetAll().ToList();
 
-            return TinyMapper.Map<List<TEntity>, List<TViewModel>>(entities);
+            return Mapper.Map<IEnumerable<TEntity>, IEnumerable<TViewModel>>(entities);
         }
 
-        public TViewModel GetEntity(Func<TEntity, bool> predicate)
+        public virtual TViewModel GetEntity(Func<TEntity, bool> predicate)
         {
             var result = _service.GetEntity(predicate);
 
-            return TinyMapper.Map<TEntity, TViewModel>(result);
+            return Mapper.Map<TEntity, TViewModel>(result);
         }
 
-        public void Update(TViewModel viewModel)
+        public virtual void Update(TViewModel viewModel)
         {
-            var entity = TinyMapper.Map<TViewModel, TEntity>(viewModel);
+            var entity = Mapper.Map<TViewModel, TEntity>(viewModel);
             _service.Update(entity);
         }
     }
