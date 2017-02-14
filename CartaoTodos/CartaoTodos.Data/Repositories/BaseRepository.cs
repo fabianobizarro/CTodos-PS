@@ -32,7 +32,7 @@ namespace CartaoTodos.Data.Repositories
 
         public virtual void Delete(TEntity entity)
         {
-            throw new NotImplementedException();
+            _db.Entry<TEntity>(entity).State = EntityState.Deleted;
         }
 
         public virtual IEnumerable<TEntity> GetAll()
@@ -47,7 +47,7 @@ namespace CartaoTodos.Data.Repositories
 
         public virtual void Update(TEntity entity)
         {
-            throw new NotImplementedException();
+            _db.Entry<TEntity>(entity).State = EntityState.Modified;
         }
     }
 }
