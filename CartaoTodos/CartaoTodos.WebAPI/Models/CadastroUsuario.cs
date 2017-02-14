@@ -24,6 +24,6 @@ namespace CartaoTodos.WebAPI.Models
         [Required(ErrorMessage = "Este campo é obrigatório")]
         public string Senha { get; set; }
 
-        public PerfilViewModel[] Perfis { get; set; }
+        public CadastroPerfil[] Perfis { get; set; }
     }
 }

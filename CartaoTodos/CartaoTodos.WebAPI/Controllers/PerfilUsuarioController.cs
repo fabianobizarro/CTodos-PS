@@ -24,12 +24,12 @@ namespace CartaoTodos.WebAPI.Controllers
         // GET: api/Usuario/{usuarioId}/perfil
         public IHttpActionResult Get(int usuarioId)
         {
-            var usuario = _usuarioService.GetEntity(p => p.Id == usuarioId);
+            var usuario = _usuarioService.GetAll().FirstOrDefault(p => p.Id == usuarioId);
             if (usuario == null)
                 return NotFound();
             else
             {
-                var result = usuario.Perfis == null ? new UsuarioPerfilViewModel[] { } : usuario.Perfis;
+                var result = usuario.Perfis == null ? new PerfilViewModel[] { } : usuario.Perfis;
                 return Content(HttpStatusCode.OK, result);
             }
         }
@@ -54,21 +54,44 @@ namespace CartaoTodos.WebAPI.Controllers
         }
 
         // PUT: api/Usuario/{usuarioId}/perfil/5
-        public void Put(int usuarioId, int id, [FromBody]PerfilViewModel model)
+        public IHttpActionResult Put(int usuarioId, int id, [FromBody]bool ativo)
         {
+            var usuario = _usuarioService.GetEntity(p => p.Id == usuarioId);
+            if (usuario == null)
+                return NotFound();
+            else
+            {
+                var perfil = usuario.Perfis.Where(p => p.Id == id).FirstOrDefault();
+                if (perfil == null) return NotFound();
+
+                _service.Update(new UsuarioPerfilViewModel()
+                {
+                    IdPerfil = id,
+                    Ativo = ativo,
+                    IdUsuario = usuarioId
+                });
+
+                return Ok("Perfil so usuário atualizado com sucesso");
+            }
         }
 
         // DELETE: api/Usuario/{usuarioId}/perfil/5
-        public void Delete(int usuarioId, int id)
+        public IHttpActionResult Delete(int usuarioId, int id)
         {
+            var usuario = _usuarioService.GetEntity(p => p.Id == id);
+            if (usuario == null)
+                return NotFound();
+            else
+            {
+                _service.Delete(new UsuarioPerfilViewModel()
+                {
+                    IdPerfil = id,
+                    IdUsuario = usuarioId
+                });
+
+                return Ok("Perfil do usuário removido com sucesso");
+            }
         }
-
-        private Action<int, Action> ValidateUsuario = (usuarioId, callback) =>
-        {
-
-
-
-        };
 
     }
 }

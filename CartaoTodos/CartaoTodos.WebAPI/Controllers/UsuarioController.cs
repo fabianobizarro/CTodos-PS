@@ -53,16 +53,14 @@ namespace CartaoTodos.WebAPI.Controllers
 
                 if (usuario.Perfis != null)
                 {
-                    model.Perfis = usuario.Perfis.Select(p => new UsuarioPerfilViewModel()
+                    model.Perfis = usuario.Perfis.Select(p => new PerfilViewModel()
                     {
-                        IdPerfil = p.Id,
+                        Id = p.Id,
                         Ativo = p.Ativo
                     }).ToList();
                 }
                 else
-                    model.Perfis = new List<UsuarioPerfilViewModel>();
-
-                model.Operacoes = new List<OperacaoUsuarioViewModel>();
+                    model.Perfis = new List<PerfilViewModel>();
 
                 _service.Add(model);
                 return Created("Teste", model);
