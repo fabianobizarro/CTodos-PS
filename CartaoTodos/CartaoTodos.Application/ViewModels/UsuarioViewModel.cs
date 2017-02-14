@@ -11,10 +11,6 @@ namespace CartaoTodos.Application.ViewModels
 {
     public class UsuarioViewModel
     {
-        public UsuarioViewModel()
-        {
-            Perfis = new List<UsuarioPerfilViewModel>();
-        }
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Este campo é obrigatório")]
@@ -35,8 +31,8 @@ namespace CartaoTodos.Application.ViewModels
         public bool Ativo { get; set; }
         public DateTime DataInclusao { get; set; }
 
-        public virtual ICollection<UsuarioPerfilViewModel> Perfis { get; set; }
+        public virtual ICollection<PerfilViewModel> Perfis { get; set; }
 
-        public virtual ICollection<OperacaoUsuarioViewModel> Operacoes { get; set; }
+        //public virtual ICollection<OperacaoUsuarioViewModel> Operacoes { get; set; }
     }
 }
