@@ -1,3 +1,73 @@
-<p>
-  editar-usuario works!
-</p>
+<div class="panel">
+  <div class="panel-body">
+
+    <h3>Cadastro de usuário</h3>
+
+    <form class="form-horizontal" #form="ngForm">
+
+      <div class="form-group">
+        <div class="col-md-8">
+          <label for="Nome">Nome</label>
+          <input type="text" name="Nome" class="form-control" [(ngModel)]="usuario.Nome" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-4">
+          <label for="Nome">Login</label>
+          <input type="text" name="Login" class="form-control" [(ngModel)]="usuario.Login" />
+        </div>
+
+        <div class="col-md-4">
+          <label for="Nome">Senha</label>
+          <input type="password" name="Senha" class="form-control" [(ngModel)]="usuario.Senha" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-8">
+          <label for="Nome">Email</label>
+          <input type="text" name="Email" class="form-control" [(ngModel)]="usuario.Email" />
+        </div>
+      </div>
+
+      <div class="form-group">
+
+        <div class="col-md-3">
+          <label for="Perfil">Perfil</label>
+          <select class="form-control" [(ngModel)]="perfilSelecionado" name="perfilSelecionado">
+            <option value="" selected="selected">-- Selecione o perfil --</option>
+            <option *ngFor="let perfil of perfisDisponiveis" value="{{perfil.Id}}"> {{perfil.Nome}} </option>
+          </select>
+          <br/>
+          <button class="btn btn-primary btn-sm" (click)="adicionarPerfil()">Vincular Perfil</button>
+        </div>
+
+        <div class="col-md-9">
+          <label>Perfis selecionados</label>
+          <ul>
+            <li *ngFor="let perfil of perfisSelecionados">
+              {{perfil.Nome}}
+              <button class="btn btn-link" (click)="removerPerfil(perfil)">Remover</button>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="form-group well">
+        <div class="col-md-12">
+          <button type="button" class="btn btn-warning" (click)="alterarUsuario()" [disabled]="!form.form.valid">
+            Alterar
+          </button>
+          <button type="button" class="btn btn-danger" (click)="excluirUsuario()" [disabled]="!form.form.valid">
+            Excluir
+          </button>
+          <a routerLink="/" class="btn btn-default">Voltar</a>
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+</div>

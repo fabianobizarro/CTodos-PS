@@ -1,4 +1,4 @@
-﻿import {Perfil} from './Perfil';
+﻿import { Perfil } from './Perfil';
 
 export interface Usuario {
     Id: number;
@@ -6,5 +6,6 @@ export interface Usuario {
     Email: string;
     Senha: string;
     Login: string;
+    Ativo: string;
     Perfis: Perfil[];
 }
