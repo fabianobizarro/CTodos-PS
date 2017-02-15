@@ -1,0 +1,39 @@
+﻿@model IEnumerable<CartaoTodos.REST.Common.Perfil>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3>
+    Perfis
+</h3>
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(p => p.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(p => p.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ativo)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(p => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(p => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ativo)
+            </td>
+        </tr>
+    }
+
+</table>
