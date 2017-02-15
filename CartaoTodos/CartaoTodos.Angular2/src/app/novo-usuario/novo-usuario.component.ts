@@ -70,9 +70,10 @@ export class NovoUsuarioComponent implements OnInit {
         console.log(result);
         this.router.navigate(['/usuarios']);
       }, err => {
-        console.log(err);
+        alert('Não foi possível cadastrar o usuário');
+        let data = JSON.parse(err._body);
+        console.log(data);
       });
-
 
   }
 

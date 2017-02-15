@@ -3,31 +3,56 @@
 
     <h3>Cadastro de usuário</h3>
 
-    <form class="form-horizontal" #form="ngForm">
+    <form class="form-horizontal" #form="ngForm" (ngSubmit)="cadastrarUsuario()" novalidate>
 
       <div class="form-group">
         <div class="col-md-8">
-          <label for="Nome">Nome</label>
-          <input type="text" name="Nome" class="form-control" [(ngModel)]="usuario.Nome" />
+          <label for="nome" class="required">Nome</label>
+          <input type="text" name="nome" class="form-control" #nome="ngModel" [(ngModel)]="usuario.Nome" required maxlength="100" />
+          <div *ngIf="nome.errors && (nome.dirty || nome.touched)" class="validation-message">
+            <p [hidden]="!nome.errors.required">
+              O nome é obrigatório
+            </p>
+            <p [hidden]="!nome.errors.maxlenght">
+              O nome deve conter no máximo 100 caracteres
+            </p>
+          </div>
         </div>
       </div>
 
       <div class="form-group">
         <div class="col-md-4">
-          <label for="Nome">Login</label>
-          <input type="text" name="Login" class="form-control" [(ngModel)]="usuario.Login"/>
+          <label for="Nome" class="required">Login</label>
+          <input type="text" name="login" class="form-control" #login="ngModel" [(ngModel)]="usuario.Login" required maxlength="50"
+          />
+          <div *ngIf="login.errors && (login.dirty || login.touched)" class="validation-message">
+            <p [hidden]="!login.errors.required">
+              O login é obrigatório
+            </p>
+            <p [hidden]="!login.errors.maxlenght">
+              O login deve conter no máximo 50 caracteres
+            </p>
+          </div>
         </div>
 
         <div class="col-md-4">
           <label for="Nome">Senha</label>
-          <input type="password" name="Senha" class="form-control" [(ngModel)]="usuario.Senha"/>
+          <input type="password" name="Senha" class="form-control" [(ngModel)]="usuario.Senha" />
         </div>
       </div>
 
       <div class="form-group">
         <div class="col-md-8">
-          <label for="Nome">Email</label>
-          <input type="text" name="Email" class="form-control" [(ngModel)]="usuario.Email"/>
+          <label for="Nome" class="required">Email</label>
+          <input type="text" name="email" #email="ngModel" class="form-control" [(ngModel)]="usuario.Email" required maxlength="70" />
+          <div *ngIf="email.errors && (email.dirty || email.touched)" class="validation-message">
+            <p [hidden]="!email.errors.required">
+              O email é obrigatório
+            </p>
+            <p [hidden]="!email.errors.maxlenght">
+              O email deve conter no máximo 70 caracteres
+            </p>
+          </div>
         </div>
       </div>
 
@@ -40,7 +65,7 @@
             <option *ngFor="let perfil of perfisDisponiveis"> {{perfil.Nome}} </option>
           </select>
           <br/>
-          <button class="btn btn-primary btn-sm" (click)="adicionarPerfil()">Vincular Perfil</button>
+          <button type="button" class="btn btn-primary btn-sm" (click)="adicionarPerfil()">Vincular Perfil</button>
         </div>
 
         <div class="col-md-9">
@@ -57,7 +82,7 @@
 
       <div class="form-group well">
         <div class="col-md-12">
-          <button type="submit" class="btn btn-success" (click)="cadastrarUsuario()" [disabled]="!form.form.valid">
+          <button type="submit" class="btn btn-success" [disabled]="!form.form.valid">
             Cadastrar
           </button>
           <a routerLink="/" class="btn btn-default">Voltar</a>

@@ -34,7 +34,9 @@ export class UsuarioService {
         return new Promise((resolve, reject) => {
 
             this.http.post(this.endpoint, usuario)
-                .map(res => res.json())
+                .map(res => {
+                    return res.json();
+                })
                 .subscribe(resolve, reject);
 
         });

@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+
+label.required::after{
+    content: ' *';
+    color: #a94442;
+}
+
+.validation-message{
+    color: #a94442;
+}
+
+input[required].ng-invalid.ng-touched{
+    border-bottom: 2px solid #a94442;
+}
+
+.ng-valid[required], .ng-valid.required  {
+    border-left: 5px solid #42A948;
+}
