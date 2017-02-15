@@ -1,6 +1,6 @@
 ﻿using CartaoTodos.Application.Interfaces;
 using CartaoTodos.Application.ViewModels;
-using CartaoTodos.WebAPI.Models;
+using CartaoTodos.REST.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,7 +39,7 @@ namespace CartaoTodos.WebAPI.Controllers
         }
 
         // POST: api/Usuario
-        public IHttpActionResult Post([FromBody]CadastroUsuario usuario)
+        public IHttpActionResult Post([FromBody]Usuario usuario)
         {
             if (ModelState.IsValid)
             {
@@ -69,7 +69,6 @@ namespace CartaoTodos.WebAPI.Controllers
             }
             else
             {
-                //TODO: Get validation Erros
                 return BadRequest(ModelState);
             }
         }

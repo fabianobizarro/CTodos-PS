@@ -148,8 +148,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CadastroPerfil.cs" />
-    <Compile Include="Models\CadastroUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -165,6 +163,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CartaoTodos.Application\CartaoTodos.Application.csproj">
@@ -178,6 +177,10 @@
     <ProjectReference Include="..\CartaoTodos.IoC\CartaoTodos.IoC.csproj">
       <Project>{668f4967-5282-4562-b1ee-ff5f8eced3d8}</Project>
       <Name>CartaoTodos.IoC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CartaoTodos.REST.Common\CartaoTodos.REST.Common.csproj">
+      <Project>{2C40102D-73D5-4D06-BC1B-3A0A768CD5FA}</Project>
+      <Name>CartaoTodos.REST.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
