@@ -9,6 +9,10 @@ namespace CartaoTodos.WebAPI
     {
         public static void Register(HttpConfiguration config)
         {
+
+            //enable cors
+            config.EnableCors();
+
             // Web API configuration and services
             config.Formatters.JsonFormatter.SupportedMediaTypes
                 .Add(new System.Net.Http.Headers.MediaTypeHeaderValue("text/html"));

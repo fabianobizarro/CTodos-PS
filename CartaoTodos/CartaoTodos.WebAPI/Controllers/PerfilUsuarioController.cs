@@ -6,9 +6,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace CartaoTodos.WebAPI.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [Route("api/Usuario/{usuarioId}/perfil")]
     public class PerfilUsuarioController : ApiController
     {
@@ -49,7 +51,7 @@ namespace CartaoTodos.WebAPI.Controllers
                     IdUsuario = usuarioId
                 };
                 _service.Add(usuarioPerfil);
-                return Ok();
+                return Ok("Perfil vinculado com sucesso");
             }
         }
 
@@ -78,7 +80,7 @@ namespace CartaoTodos.WebAPI.Controllers
         // DELETE: api/Usuario/{usuarioId}/perfil/5
         public IHttpActionResult Delete(int usuarioId, int id)
         {
-            var usuario = _usuarioService.GetEntity(p => p.Id == id);
+            var usuario = _usuarioService.GetEntity(p => p.Id == usuarioId);
             if (usuario == null)
                 return NotFound();
             else
