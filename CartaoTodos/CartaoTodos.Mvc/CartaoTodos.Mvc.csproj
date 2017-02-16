@@ -185,6 +185,8 @@
     <Content Include="Views\Usuarios\Index.cshtml" />
     <Content Include="Views\Usuarios\Novo.cshtml" />
     <Content Include="Views\Usuarios\Detalhes.cshtml" />
+    <Content Include="Views\Usuarios\Excluir.cshtml" />
+    <Content Include="Views\Usuarios\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -203,7 +205,7 @@
       <Name>CartaoTodos.REST.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\CartaoTodos.REST\CartaoTodos.REST.csproj">
-      <Project>{44e170b6-f092-483a-b7cf-3bf1bf2b52f2}</Project>
+      <Project>{44E170B6-F092-483A-B7CF-3BF1BF2B52F2}</Project>
       <Name>CartaoTodos.REST</Name>
     </ProjectReference>
   </ItemGroup>

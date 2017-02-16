@@ -1,11 +1,12 @@
 ﻿@model CartaoTodos.REST.Common.Usuario
 
 @{
-    ViewBag.Title = "Detalhes";
+    ViewBag.Title = "Excluir";
 }
 
-<h2>Detalhes</h2>
+<h2>Excluir</h2>
 
+<h3>Deseja excluir este usuário?</h3>
 <div>
     <hr />
     <dl class="dl-horizontal">
@@ -51,10 +52,7 @@
 
         @if (Model.Perfis != null)
         {
-            <dt>
-                @Html.DisplayNameFor(p => p.Perfis)
-            </dt>
-
+            <dt>Perfis</dt>
             <dd>
                 <ul>
                     @foreach (var perfil in Model.Perfis)
@@ -66,10 +64,20 @@
             </dd>
         }
 
-
     </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(p => p.Nome)
+        @Html.HiddenFor(p => p.Login)
+        @Html.HiddenFor(p => p.Email)
+        @Html.HiddenFor(p => p.Senha)
+        @Html.HiddenFor(p => p.Ativo)
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Excluir" class="btn btn-danger" /> |
+            @Html.ActionLink("Voltar", "Index")
+        </div>
+    }
 </div>
-<p>
-    @Html.ActionLink("Editar", "Editar", new { id = Model.Id }, new { @class = "btn btn-warning" }) |
-    @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-default" })
-</p>
