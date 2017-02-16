@@ -4,6 +4,7 @@ using CartaoTodos.Data.Repositories;
 using CartaoTodos.Domain.Interfaces.Repositories;
 using CartaoTodos.Domain.Interfaces.Services;
 using CartaoTodos.Domain.Services;
+using CartaoTodos.REST;
 using SimpleInjector;
 using System;
 using System.Collections.Generic;
@@ -15,12 +16,31 @@ namespace CartaoTodos.IoC
 {
     public class DIContainer
     {
+
+        public static Container GetContainer()
+        {
+            var container = new Container();
+
+            RegisterDependencies(container);
+
+            return container;
+            
+        }
+
         public static Container GetContainer(ScopedLifestyle lifestyle)
         {
             var container = new Container();
 
             container.Options.DefaultScopedLifestyle = lifestyle;
 
+            RegisterDependencies(container);
+
+            return container;
+
+        }
+
+        private static void RegisterDependencies(Container container)
+        {
             container.Register(typeof(IBaseService<>), typeof(BaseService<>));
             container.Register<IPerfilService, PerfilService>();
             container.Register<IUsuarioService, UsuarioService>();
@@ -36,9 +56,7 @@ namespace CartaoTodos.IoC
             container.Register<IPerfilAppService, PerfilAppService>();
             container.Register<IUsuarioPerfilAppService, UsuarioPerfilAppService>();
 
-            return container;
-            
+            container.Register<IApiRestClient, ApiRestClient>();
         }
-
     }
 }
