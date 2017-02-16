@@ -35,11 +35,14 @@ namespace CartaoTodos.REST
         {
             var request = new RestRequest("/Usuario", Method.GET);
 
-            request.OnBeforeDeserialization = (res => {
+            request.OnBeforeDeserialization = (res =>
+            {
                 res.Content = res.Content.Replace("\"Perfis\":[]", "\"Perfis\": null");
             });
 
             var response = _client.Execute<List<Usuario>>(request);
+
+            //List<Usuario> result = (List<Usuario>)response.Data;
 
             return response.Data;
         }
@@ -74,6 +77,15 @@ namespace CartaoTodos.REST
             {
                 //TODO: Estourar exceção
             }
+        }
+
+        public void ExcluirUsuario(int usuarioId)
+        {
+            var request = new RestRequest("/Usuario", Method.DELETE);
+
+            request.AddParameter("id", usuarioId);
+
+            var response = _client.Execute(request);
         }
     }
 }

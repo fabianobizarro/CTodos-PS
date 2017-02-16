@@ -11,5 +11,6 @@ namespace CartaoTodos.REST
 
         Usuario ObterUsuario(int idUsuario);
         void AdicionarUsuario(Usuario usuario);
+        void ExcluirUsuario(int usuarioId);
     }
 }
