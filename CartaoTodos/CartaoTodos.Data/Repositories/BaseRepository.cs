@@ -32,7 +32,7 @@ namespace CartaoTodos.Data.Repositories
 
         public virtual void Delete(TEntity entity)
         {
-            _db.Entry<TEntity>(entity).State = EntityState.Deleted;
+            _set.Remove(entity);
         }
 
         public virtual IEnumerable<TEntity> GetAll()
