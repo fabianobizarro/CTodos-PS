@@ -25,5 +25,12 @@ namespace CartaoTodos.Application.Services
             usuarioPerfil.Ativo = viewModel.Ativo;
             _service.Update(usuarioPerfil);
         }
+
+        public override void Delete(UsuarioPerfilViewModel viewModel)
+        {
+            var perfilUsuario = _service.GetAll().First(p => p.IdPerfil == viewModel.IdPerfil && p.IdUsuario == viewModel.IdUsuario);
+
+            _service.Delete(perfilUsuario);
+        }
     }
 }
