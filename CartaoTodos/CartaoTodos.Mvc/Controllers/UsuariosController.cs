@@ -4,6 +4,7 @@ using CartaoTodos.REST.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 
 namespace CartaoTodos.Mvc.Controllers
@@ -42,7 +43,10 @@ namespace CartaoTodos.Mvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                model.Usuario.Perfis = model.PerfisUsuario.Select(p => new Perfil() { Id = p }).ToList();
+                if (model.PerfisUsuario != null)
+                    model.Usuario.Perfis = model.PerfisUsuario.Select(p => new Perfil() { Id = p }).ToList();
+
+                model.Usuario.Ativo = true;
 
                 _client.AdicionarUsuario(model.Usuario);
                 return RedirectToAction("Index", "Usuarios");
@@ -72,16 +76,16 @@ namespace CartaoTodos.Mvc.Controllers
         {
             var model = new CadastroUsuarioViewModel();
             model.Usuario = _client.ObterUsuario(id);
-            
 
             if (model.Usuario == null)
             {
-                // TODO: Usuário não existe
+                ViewBag.MensagemErro = "Usuário inexistente";
                 return RedirectToAction("Index", "Usuarios");
             }
             else
             {
                 model.Perfis = _client.ObterPerfis();
+                TempData["Perfis"] = model.Perfis;
                 return View(model);
             }
         }
@@ -90,7 +94,28 @@ namespace CartaoTodos.Mvc.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Editar(CadastroUsuarioViewModel model)
         {
-            return View();
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _client.EditarUsuario(model.Usuario);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    model.Perfis = TempData["Perfis"] as IEnumerable<Perfil>;
+                    TempData.Keep();
+                    return View(model);
+                }
+            }
+            catch (Exception ex)
+            {
+                ViewBag.MensagemErro = ex.Message;
+                model.Perfis = TempData["Perfis"] as IEnumerable<Perfil>;
+                TempData.Keep();
+                return View(model);
+            }
+
         }
 
         public ActionResult Excluir(int id)
@@ -119,6 +144,34 @@ namespace CartaoTodos.Mvc.Controllers
             catch (Exception ex)
             {
                 return View(model);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult AdicionarPerfil(int usuarioId, int perfilId)
+        {
+            try
+            {
+                _client.AdicionarPerfil(usuarioId, perfilId);
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult RemoverPerfil(int usuarioId, int perfilId)
+        {
+            try
+            {
+                _client.RemoverPerfil(usuarioId, perfilId);
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError, ex.Message);
             }
         }
     }

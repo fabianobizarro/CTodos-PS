@@ -3,7 +3,6 @@
     ViewBag.Title = "Novo";
 }
 <h3>Editar usuário</h3>
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -11,6 +10,9 @@
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.HiddenFor(p => p.Usuario.Id)
+
         <div class="form-group">
             @Html.LabelFor(model => model.Usuario.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -35,13 +37,11 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Usuario.Senha, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Usuario.Senha, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.PasswordFor(model => model.Usuario.Senha, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Usuario.Senha, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <hr />
-
         <div class="form-group">
             <label class="control-label col-md-2">Perfis disponíveis</label>
             <div class="col-md-10">
@@ -51,28 +51,28 @@
                 <button type="button" id="adicionarPerfil" class="btn btn-default">Adicionar</button>
             </div>
         </div>
-
         <div class="form-group">
             <label class="control-label col-md-2">Perfis vinculados</label>
             <div class="col-md-10">
-                <ul>
-                    @foreach (var perfil in Model.Usuario.Perfis)
+                <ul id="li-perfis">
+                    @if (Model.Usuario.Perfis != null)
                     {
-                        <li>
-                            <text class="perfil-vinculado"> @perfil.Nome </text>
-                            <button type="button" class="btn btn-link removerPerfil" data-id="@perfil.Id" data-nome="@perfil.Nome" >Remover</button>
-                        </li>
+                        foreach (var perfil in Model.Usuario.Perfis)
+                        {
+                            <li>
+                                <text class="perfil-vinculado"> @perfil.Nome </text>
+                                <button type="button" class="btn btn-link removerPerfil" data-id="@perfil.Id" data-nome="@perfil.Nome">Remover</button>
+                            </li>
+                        }
                     }
                 </ul>
             </div>
         </div>
-
         <hr />
-
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Cadastrar" class="btn btn-success" />
+                <input type="submit" value="Alterar" class="btn btn-warning" />
                 @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-default" })
             </div>
         </div>
@@ -82,6 +82,8 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script>
         $(document).ready(function () {
+
+            var IdUsuario = $("#@Html.IdFor(p => p.Usuario.Id)");
 
             $("#adicionarPerfil").click(function () {
                 var perfilSelecionado = $("#PerfisUsuario option:selected");
@@ -98,26 +100,58 @@
                 if (perfilJaVinculado)
                     alert('Este perfil já está vinculado ao candidato');
                 else {
-                    //vincularPerfil();
+                    vincularPerfil(IdUsuario.val(), id, function (err) {
+
+                        if (err) {
+                            alert('Não foi possível vincular o perfil ao candidato.');
+                            console.error(err);
+                        }
+                        else {
+                            $("#li-perfis").append($('<li> \
+                                <text class="perfil-vinculado"> '  + nome + ' </text> \
+                                <button type="button" class="btn btn-link removerPerfil" data-id="' + id + '" data-nome="' + nome + '">Remover</button> \
+                            </li>'));
+                        }
+
+                    });
                 }
             });
 
-            $('.removerPerfil').click(function () {
-                console.log(this);
+            $('#li-perfis').on('click', 'button', function () {
+
+                
+                var self = this;
+
+                var perfilId = this.getAttribute('data-id');
+                removerPerfil(IdUsuario.val(), perfilId, function (err, result) {
+                    if (err) {
+                        alert('Não foi possível desvincular este perfil do usuário');
+                        console.error(err);
+                    }
+                    else {
+                        $(self).parent().remove();
+                    }
+                });
             });
 
-            function vincularPerfil(usuarioId, perfilId) {
-                $.post('url pra vincular o perfil', { usuarioId: usuarioId, perfilId: perfilId },
+            function vincularPerfil(usuarioId, perfilId, callback) {
+                $.post("@Url.Action("AdicionarPerfil", "Usuarios")", { usuarioId: usuarioId, perfilId: perfilId },
                     function (result) {
-                        console.log(result);
+                        callback(null, result);
                     })
                     .error(function (err) {
-                        console.log(err);
+                        callback(err);
                     });
             }
 
-            function removerPerfil(el) {
-                console.log(el)
+            function removerPerfil(usuarioId, perfilId, callback) {
+                $.post("@Url.Action("RemoverPerfil", "Usuarios")", { usuarioId: usuarioId, perfilId: perfilId },
+                    function (result) {
+                        callback(null, result);
+                    })
+                    .error(function (err) {
+                        callback(err);
+                    });
             }
 
         });

@@ -27,6 +27,13 @@
         </div>
     </div>
     <div class="container body-content">
+
+        @{string mensagemErro = ViewBag.MensagemErro;}
+        @if (mensagemErro != null)
+        {
+            <script> alert('@mensagemErro'); </script>
+        }
+
         @RenderBody()
         <hr />
         <footer>
