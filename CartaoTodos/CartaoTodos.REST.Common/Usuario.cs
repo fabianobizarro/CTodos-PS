@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace CartaoTodos.REST.Common
 {
@@ -18,8 +19,11 @@ namespace CartaoTodos.REST.Common
         [MaxLength(70, ErrorMessage = "Este campo deve conter no máximo {1} caracteres")]
         public string Email { get; set; }
 
+        public List<Perfil> Perfis { get; set; }
+
         public string Senha { get; set; }
 
-        public Perfil[] Perfis { get; set; }
+        public bool Ativo { get; set; }
+
     }
 }
