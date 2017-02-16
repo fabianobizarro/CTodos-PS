@@ -66,10 +66,10 @@ namespace CartaoTodos.REST
         {
             var request = new RestRequest("/Usuario", Method.POST);
 
-            var serializer = new JavaScriptSerializer();
-            var obj = serializer.Serialize(usuario);
-            
-            request.AddBody(usuario);
+            //var serializer = new JavaScriptSerializer();
+            //var json = serializer.Serialize(usuario);
+
+            request.AddJsonBody(usuario);
 
             var response = _client.Execute(request);
 
@@ -84,6 +84,39 @@ namespace CartaoTodos.REST
             var request = new RestRequest("/Usuario", Method.DELETE);
 
             request.AddParameter("id", usuarioId);
+
+            var response = _client.Execute(request);
+        }
+
+        public void AdicionarPerfil(int usuarioId, int perfilId, bool ativo = true)
+        {
+            var request = new RestRequest($"/Usuario/{usuarioId}/perfil", Method.POST);
+
+            var perfil = new Perfil()
+            {
+                Id = perfilId,
+                Ativo = ativo
+            };
+            
+            request.AddJsonBody(perfil);
+
+            var respose = _client.Execute(request);
+        }
+
+        public void RemoverPerfil(int usuarioId, int perfilId)
+        {
+            var request = new RestRequest($"/Usuario/{usuarioId}/perfil", Method.DELETE);
+
+            request.AddParameter("id", perfilId);
+
+            var respose = _client.Execute(request);
+        }
+
+        public void EditarUsuario(Usuario usuario)
+        {
+            var request = new RestRequest($"/Usuario/{usuario.Id}", Method.PUT);
+
+            request.AddJsonBody(usuario);
 
             var response = _client.Execute(request);
         }
