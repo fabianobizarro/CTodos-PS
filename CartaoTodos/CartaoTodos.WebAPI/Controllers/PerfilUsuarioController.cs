@@ -1,5 +1,6 @@
 ﻿using CartaoTodos.Application.Interfaces;
 using CartaoTodos.Application.ViewModels;
+using CartaoTodos.REST.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +38,7 @@ namespace CartaoTodos.WebAPI.Controllers
         }
 
         // POST: api/Usuario/{usuarioId}/perfil
-        public IHttpActionResult Post(int usuarioId, [FromBody]PerfilViewModel model)
+        public IHttpActionResult Post(int usuarioId, [FromBody]Perfil perfil)
         {
             var usuario = _usuarioService.GetEntity(p => p.Id == usuarioId);
             if (usuario == null)
@@ -46,8 +47,8 @@ namespace CartaoTodos.WebAPI.Controllers
             {
                 var usuarioPerfil = new UsuarioPerfilViewModel()
                 {
-                    Ativo = true,
-                    IdPerfil = model.Id,
+                    Ativo = perfil.Ativo,
+                    IdPerfil = perfil.Id,
                     IdUsuario = usuarioId
                 };
                 _service.Add(usuarioPerfil);
