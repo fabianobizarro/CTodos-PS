@@ -24,7 +24,6 @@ namespace CartaoTodos.Application.ViewModels
         [MaxLength(70, ErrorMessage = "Este campo deve conter no máximo {1} caracteres")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Este campo é obrigatório")]
         public string Senha { get; set; }
 
         public bool Ativo { get; set; }
