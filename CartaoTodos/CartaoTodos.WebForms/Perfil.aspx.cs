@@ -18,7 +18,7 @@ namespace CartaoTodos.WebForms
         public Perfil()
         {
             var container = DIContainer.GetContainer();
-            container.Register<IApiRestClient, ApiRestClient>();
+            
             _client = container.GetInstance<IApiRestClient>();
         }
 
