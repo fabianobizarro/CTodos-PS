@@ -17,5 +17,20 @@ namespace CartaoTodos.Application.Services
         {
 
         }
+        public override void Update(PerfilViewModel viewModel)
+        {
+            var perfil = _service.GetEntity(p => p.Id == viewModel.Id);
+
+            perfil.Nome = viewModel.Nome;
+            perfil.Ativo = viewModel.Ativo;
+
+            _service.Update(perfil);
+        }
+
+        public override void Delete(PerfilViewModel viewModel)
+        {
+            var perfil = _service.GetEntity(p => p.Id == viewModel.Id);
+            _service.Delete(perfil);
+        }
     }
 }
