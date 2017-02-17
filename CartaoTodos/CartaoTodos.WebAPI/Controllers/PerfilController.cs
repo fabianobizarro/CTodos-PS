@@ -41,20 +41,48 @@ namespace CartaoTodos.WebAPI.Controllers
                 return Content(HttpStatusCode.OK, perfil);
         }
 
-        // POST: api/Perfil
-        //public void Post([FromBody]PerfilViewModel value)
-        //{
+        //POST: api/Perfil
+        public IHttpActionResult Post([FromBody]PerfilViewModel perfil)
+        {
+            if (ModelState.IsValid)
+            {
+                _service.Add(perfil);
+                return Ok();
+            }
+            else
+                return BadRequest(ModelState);
+        }
 
-        //}
+        // PUT: api/Perfil/5
+        public IHttpActionResult Put(int id, [FromBody]PerfilViewModel perfil)
+        {
+            var entity = _service.GetEntity(p => p.Id == id);
+            if (entity == null)
+                return NotFound();
+            else
+            if (ModelState.IsValid)
+            {
+                perfil.Id = id;
+                _service.Update(perfil);
+                return Ok("Perfil atualizado.");
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
+        }
 
-        //// PUT: api/Perfil/5
-        //public void Put(int id, [FromBody]string value)
-        //{
-        //}
-
-        //// DELETE: api/Perfil/5
-        //public void Delete(int id)
-        //{
-        //}
+        // DELETE: api/Perfil/5
+        public IHttpActionResult Delete(int id)
+        {
+            var perfil = _service.GetEntity(p => p.Id == id);
+            if (perfil == null)
+                return NotFound();
+            else
+            {
+                _service.Delete(perfil);
+                return Ok("Perfil excluído");
+            }
+        }
     }
 }
