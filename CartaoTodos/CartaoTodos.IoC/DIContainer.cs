@@ -4,7 +4,6 @@ using CartaoTodos.Data.Repositories;
 using CartaoTodos.Domain.Interfaces.Repositories;
 using CartaoTodos.Domain.Interfaces.Services;
 using CartaoTodos.Domain.Services;
-using CartaoTodos.REST;
 using SimpleInjector;
 using System;
 using System.Collections.Generic;
@@ -55,8 +54,6 @@ namespace CartaoTodos.IoC
             container.Register<IUsuarioAppService, UsuarioAppService>();
             container.Register<IPerfilAppService, PerfilAppService>();
             container.Register<IUsuarioPerfilAppService, UsuarioPerfilAppService>();
-
-            container.Register<IApiRestClient, ApiRestClient>();
         }
     }
 }
