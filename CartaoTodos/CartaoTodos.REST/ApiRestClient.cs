@@ -22,9 +22,12 @@ namespace CartaoTodos.REST
             _client = new RestClient(_endpoint);
         }
 
-        public IEnumerable<Perfil> ObterPerfis()
+        public IEnumerable<Perfil> ObterPerfis(bool todos = false)
         {
             var request = new RestRequest("/Perfil", Method.GET);
+
+            if (todos)
+                request.AddParameter("all", true);
 
             var response = _client.Execute<List<Perfil>>(request);
 
@@ -119,6 +122,45 @@ namespace CartaoTodos.REST
             request.AddJsonBody(usuario);
 
             var response = _client.Execute(request);
+        }
+
+        public void EditarPerfil(Perfil perfil)
+        {
+            var request = new RestRequest($"/Perfil/{perfil.Id}", Method.PUT);
+
+            request.AddJsonBody(perfil);
+
+            var response = _client.Execute(request);
+        }
+
+        public Perfil ObterPerfil(int idPerfil)
+        {
+            var request = new RestRequest("/Perfil", Method.GET);
+
+            request.AddParameter("id", idPerfil);
+
+            var response = _client.Execute<Perfil>(request);
+
+            return response.Data;
+        }
+
+        public void RemoverPerfil(int id)
+        {
+            var request = new RestRequest("/Perfil", Method.DELETE);
+
+            request.AddParameter("id", id);
+
+            var response = _client.Execute(request);
+        }
+
+        public void AdicionarPerfil(Perfil perfil)
+        {
+            var request = new RestRequest("/Perfil", Method.POST);
+
+            request.AddJsonBody(perfil);
+
+            var respose = _client.Execute(request);
+            
         }
     }
 }

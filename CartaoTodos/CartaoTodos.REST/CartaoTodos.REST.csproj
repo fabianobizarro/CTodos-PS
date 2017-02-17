@@ -47,9 +47,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiClient.cs" />
     <Compile Include="ApiRestClient.cs" />
+    <Compile Include="Client\BaseClient.cs" />
+    <Compile Include="Client\PerfilClient.cs" />
+    <Compile Include="Client\PerfilUsuarioClient.cs" />
+    <Compile Include="Client\UsuarioClient.cs" />
+    <Compile Include="IApiClient.cs" />
     <Compile Include="IApiRestClient.cs" />
+    <Compile Include="Interfaces\IClient.cs" />
+    <Compile Include="Interfaces\IPerfilClient.cs" />
+    <Compile Include="Interfaces\IPerfilUsuarioClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Interfaces\IUsuarioClient.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
