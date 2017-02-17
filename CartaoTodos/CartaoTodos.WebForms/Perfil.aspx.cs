@@ -10,19 +10,13 @@ using System.Web.UI.WebControls;
 
 namespace CartaoTodos.WebForms
 {
-    public partial class Perfil : BasePage //System.Web.UI.Page
+    public partial class Perfil : BasePage
     {
-        private IApiRestClient _client;
         public IEnumerable<CartaoTodos.REST.Common.Perfil> Perfis { get; set; }
-
-        public Perfil()
-        {
-            _client = DI.GetInstance<IApiRestClient>();
-        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Perfis = _client.ObterPerfis();
+            Perfis = _apiClient.ObterPerfis(todos: true);
         }
     }
 }

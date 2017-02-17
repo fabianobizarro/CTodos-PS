@@ -41,8 +41,9 @@
                     <%= usuario.Perfis == null ? 0 : usuario.Perfis.Count %>
                 </td>
                 <td>
-                    <a href="/EditarUsuario?id=<%=usuario.Id %>">Editar</a> |
                     <a href="/DetalhesUsuario?id=<%=usuario.Id %>">Detalhes</a> |
+                    <a href="/VincularPerfil?idUsuario=<%=usuario.Id %>">Vincular Perfis</a> |
+                    <a href="/EditarUsuario?id=<%=usuario.Id %>">Editar</a> |
                     <a href="/ExcluirUsuario?id=<%=usuario.Id %>">Excluir</a>
                 </td>
             </tr>

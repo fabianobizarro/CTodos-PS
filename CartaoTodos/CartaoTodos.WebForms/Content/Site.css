@@ -29,3 +29,8 @@ textarea {
         padding: 0;
     }
 }
+
+
+.validation-message {
+    color: #b94a48;
+}
