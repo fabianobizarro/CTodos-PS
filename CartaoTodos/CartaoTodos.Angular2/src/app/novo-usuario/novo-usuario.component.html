@@ -1,7 +1,7 @@
 <div class="panel">
   <div class="panel-body">
 
-    <h3>Cadastro de usuário</h3>
+    <h4>Cadastro de usuário</h4>
 
     <form class="form-horizontal" #form="ngForm" (ngSubmit)="cadastrarUsuario()" novalidate>
 
@@ -80,7 +80,9 @@
 
       </div>
 
-      <div class="form-group well">
+      <hr/>
+      
+      <div class="form-group">
         <div class="col-md-12">
           <button type="submit" class="btn btn-success" [disabled]="!form.form.valid">
             Cadastrar
