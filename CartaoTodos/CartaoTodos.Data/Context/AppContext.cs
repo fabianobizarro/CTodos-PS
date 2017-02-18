@@ -18,7 +18,6 @@ namespace CartaoTodos.Data.Context
         public DbSet<OperacaoUsuario> Operacoes { get; set; }
 
         public AppContext()
-        //: base(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=DBTODOS;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
             : base("Name=AppConnection")
         {
 

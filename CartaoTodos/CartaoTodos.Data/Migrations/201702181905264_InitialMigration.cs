@@ -27,7 +27,7 @@ namespace CartaoTodos.Data.Migrations
                         LOGIN = c.String(nullable: false, maxLength: 50),
                         NOME = c.String(nullable: false, maxLength: 100),
                         EMAIL = c.String(nullable: false, maxLength: 70),
-                        SENHA = c.String(nullable: false, maxLength: 256),
+                        SENHA = c.String(maxLength: 256),
                         ATIVO = c.Boolean(nullable: false),
                         DT_INCLUSAO = c.DateTime(nullable: false),
                     })

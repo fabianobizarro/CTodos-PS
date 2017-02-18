@@ -36,7 +36,7 @@ namespace CartaoTodos.Data.Config
 
             Property(p => p.Senha)
                 .HasMaxLength(256)
-                .IsRequired()
+                .IsOptional()
                 .HasColumnName("SENHA");
 
             Property(p => p.Ativo)
