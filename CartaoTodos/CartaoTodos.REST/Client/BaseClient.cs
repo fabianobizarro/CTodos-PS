@@ -18,6 +18,7 @@ namespace CartaoTodos.REST.Client
         {
             _apiEndpoint = ApiEndpoint;
             _client = new RestClient(ApiEndpoint);
+            _resourceUri = resourceUri;
         }
 
         public BaseClient(string resourceUri)
@@ -57,7 +58,7 @@ namespace CartaoTodos.REST.Client
         {
             var request = new RestRequest(this._resourceUri, Method.PUT);
 
-            request.AddParameter("id", id);
+            request.AddQueryParameter("id", id.ToString());
             request.AddJsonBody(model);
 
             return _client.Execute(request);
