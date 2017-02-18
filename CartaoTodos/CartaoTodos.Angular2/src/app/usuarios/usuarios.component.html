@@ -11,18 +11,18 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Id</th>
                             <th>Nome</th>
                             <th>Login</th>
+                            <th>Email</th>
                             <th>Perfis</th>
                             <th>Opções</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let usuario of usuarios">
-                            <td> {{usuario.Id}} </td>
                             <td> {{usuario.Nome}} </td>
                             <td> {{usuario.Login}} </td>
+                            <td> {{usuario.Email}} </td>
                             <td> {{usuario.Perfis.length}} </td>
                             <td>
                                 <a routerLink="/usuarios/{{usuario.Id}}">Visualizar</a> |
