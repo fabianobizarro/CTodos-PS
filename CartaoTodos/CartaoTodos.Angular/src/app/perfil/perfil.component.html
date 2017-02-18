@@ -1,0 +1,36 @@
+<div class="panel">
+  <div class="panel-body">
+
+    <h4>Perfis</h4>
+
+    <p>
+      <a routerLink="/perfil/novo" class="btn btn-success btn-sm">Novo Perfil</a>
+    </p>
+
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Nome</th>
+              <th>Ativo</th>
+              <th>Opções</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let perfil of perfis">
+              <td>{{perfil.Id}}</td>
+              <td>{{perfil.Nome}}</td>
+              <td>{{perfil.Ativo ? "Sim" : "Não"}}</td>
+              <td>
+                <a routerLink="/perfil/{{perfil.Id}}/editar">Editar</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>

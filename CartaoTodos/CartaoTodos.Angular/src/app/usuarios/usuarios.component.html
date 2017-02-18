@@ -1,0 +1,39 @@
+<div class="panel">
+
+    <div class="panel-body">
+
+        <h4>Usuários</h4>
+        <p>
+            <a routerLink="/usuarios/novo" class="btn btn-success btn-sm">Novo Usuário</a>
+        </p>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Login</th>
+                            <th>Email</th>
+                            <th>Perfis</th>
+                            <th>Opções</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let usuario of usuarios">
+                            <td> {{usuario.Nome}} </td>
+                            <td> {{usuario.Login}} </td>
+                            <td> {{usuario.Email}} </td>
+                            <td> {{usuario.Perfis.length}} </td>
+                            <td>
+                                <a routerLink="/usuarios/{{usuario.Id}}">Visualizar</a> |
+                                <a routerLink="/usuarios/{{usuario.Id}}/editar">Editar</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</div>

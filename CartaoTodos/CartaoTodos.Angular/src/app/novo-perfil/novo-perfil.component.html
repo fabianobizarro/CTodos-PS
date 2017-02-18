@@ -1,0 +1,47 @@
+<div class="panel">
+  <div class="panel-body">
+
+    <h4>Cadasrar Perfil</h4>
+
+    <form novalidate (ngSubmit)="submit()" #form="ngForm">
+
+      <div class="form-horizontal">
+
+        <div class="form-group">
+          <div class="col-md-6">
+            <label >Nome</label>
+            <input type="text" class="form-control" name="nome" #nome="ngModel" [(ngModel)]="perfil.Nome" required/>
+            <div *ngIf="nome.errors && (nome.dirty || nome.touched)" class="validation-message">
+              <p [hidden]="!nome.errors.required">
+                O nome é obrigatório
+              </p>
+              <p [hidden]="!nome.errors.maxlenght">
+                O nome deve conter no máximo 100 caracteres
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-md-6">
+            <label for="Ativo">Ativo</label> &nbsp;
+            <input type="checkbox" name="Ativo" #ativo="ngModel" [(ngModel)]="perfil.Ativo"/>
+          </div>
+        </div>
+
+        <hr/>
+
+        <div class="form-group">
+          <div class="col-md-6">
+            <button type="submit" class="btn btn-success" [disabled]="!form.form.valid" >Salvar</button> |
+            <a routerLink="/perfil" class="btn btn-default">Voltar</a>
+          </div>
+        </div>
+
+
+      </div>
+
+    </form>
+
+  </div>
+</div>
