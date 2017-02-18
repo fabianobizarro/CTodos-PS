@@ -3,7 +3,7 @@
 # compiled output
 /dist
 /tmp
-/wwwroot
+#/wwwroot
 
 # dependencies
 /node_modules
