@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Swashbuckle.Application;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -17,10 +18,16 @@ namespace CartaoTodos.WebAPI
             config.Formatters.JsonFormatter.SupportedMediaTypes
                 .Add(new System.Net.Http.Headers.MediaTypeHeaderValue("text/html"));
 
-
-
             // Web API routes
             config.MapHttpAttributeRoutes();
+
+            config.Routes.MapHttpRoute(
+                name: "Home",
+                routeTemplate: "",
+                defaults: null,
+                constraints: null,
+                handler: new RedirectHandler(message => message.RequestUri.ToString(), "swagger")
+            );
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
