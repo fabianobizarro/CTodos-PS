@@ -11,43 +11,47 @@
             @Html.ActionLink("Adicionar", "Novo", null, new { @class = "btn btn-success btn-sm" })
         </p>
         <table class="table table-striped">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Login)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Nome)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Email)
-                </th>
-                <th>
-                    Perfis
-                </th>
-                <th>Opções</th>
-            </tr>
-            @foreach (var item in Model)
-            {
+            <thead>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Login)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Nome)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Email)
-                    </td>
-                    <td>
-                        @(item.Perfis == null ? 0 : item.Perfis.Count())
-                    </td>
-                    <td>
-                        @Html.ActionLink("Editar", "Editar", new { id = item.Id }) |
-                        @Html.ActionLink("Detalhes", "Detalhes", new { id = item.Id }) |
-                        @Html.ActionLink("Excluir", "Excluir", new { id = item.Id })
-                    </td>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Login)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nome)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th>
+                        Perfis
+                    </th>
+                    <th>Opções</th>
                 </tr>
-            }
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Login)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @(item.Perfis == null ? 0 : item.Perfis.Count())
+                        </td>
+                        <td>
+                            @Html.ActionLink("Editar", "Editar", new { id = item.Id }) |
+                            @Html.ActionLink("Detalhes", "Detalhes", new { id = item.Id }) |
+                            @Html.ActionLink("Excluir", "Excluir", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
+            </tbody>
         </table>
 
     </div>
