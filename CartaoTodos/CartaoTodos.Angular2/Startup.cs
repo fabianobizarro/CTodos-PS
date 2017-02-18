@@ -31,10 +31,6 @@ namespace CartaoTodos.Angular2
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
-            //app.Run(async (context) =>
-            //{
-            //    await context.Response.WriteAsync("Hello World!");
-            //});
         }
     }
 }
