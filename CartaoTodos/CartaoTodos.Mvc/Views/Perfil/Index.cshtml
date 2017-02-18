@@ -1,51 +1,49 @@
 ﻿@model IEnumerable<CartaoTodos.REST.Common.Perfil>
-
 @{
     ViewBag.Title = "Index";
 }
 
-<h3>
-    Perfis
-</h3>
+<div class="panel">
+    <div class="panel-body">
+        <h4>Perfis</h4>
+        <p>
+            <a class="btn btn-success btn-sm" href="@Url.Action("Novo", "Perfil")">Novo Pefil</a>
+        </p>
+        <table class="table table-striped">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(p => p.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(p => p.Nome)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Ativo)
+                </th>
+                <th>
+                    Opções
+                </th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(p => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(p => item.Nome)
+                    </td>
+                    <td>
+                        @(item.Ativo ? "Sim" : "Não")
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Editar", new { id = item.Id }) |
+                        @Html.ActionLink("Detalhes", "Detalhes", new { id = item.Id }) |
+                        @Html.ActionLink("Excluir", "Excluir", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+        </table>
 
-<p>
-    <a class="btn btn-success" href="@Url.Action("Novo", "Perfil")">Adicionar Pefil</a>
-</p>
-
-<table class="table table-striped">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(p => p.Id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(p => p.Nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Ativo)
-        </th>
-        <th>
-            Opções
-        </th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(p => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(p => item.Nome)
-            </td>
-            <td>
-                @(item.Ativo ? "Sim" : "Não")
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Editar", new { id = item.Id }) | 
-                @Html.ActionLink("Detalhes", "Detalhes", new { id = item.Id }) |
-                @Html.ActionLink("Excluir", "Excluir", new { id = item.Id })
-            </td>
-        </tr>
-    }
-
-</table>
+    </div>
+</div>

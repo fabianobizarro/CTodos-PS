@@ -10,7 +10,6 @@ namespace CartaoTodos.Mvc.Controllers
 {
     public class PerfilController : Controller
     {
-        //private readonly IApiRestClient _client;
         private readonly IApiClient _client;
 
         public PerfilController(IApiClient client)

@@ -31,3 +31,8 @@ input.input-validation-error{
 input.valid{
     border-left: 5px solid #398439;
 }
+
+label.required::after{
+    content: ' *' !important;
+    color: #a94442 !important;
+}

@@ -11,9 +11,9 @@ namespace CartaoTodos.Mvc.Controllers
 {
     public class UsuariosController : Controller
     {
-        private readonly IApiRestClient _client;
+        private readonly IApiClient _client;
 
-        public UsuariosController(IApiRestClient client)
+        public UsuariosController(IApiClient client)
         {
             _client = client;
         }
@@ -21,7 +21,7 @@ namespace CartaoTodos.Mvc.Controllers
         // GET: Usuarios
         public ActionResult Index()
         {
-            var usuarios = _client.ObterUsuarios();
+            var usuarios = _client.Usuario.GetAll().Data;
 
             if (usuarios == null)
                 usuarios = new List<Usuario>();
@@ -32,7 +32,7 @@ namespace CartaoTodos.Mvc.Controllers
         public ActionResult Novo()
         {
             var model = new CadastroUsuarioViewModel();
-            model.Perfis = _client.ObterPerfis();
+            model.Perfis = _client.Perfil.ObterPErfis().Data;
 
             return View(model);
         }
@@ -48,7 +48,7 @@ namespace CartaoTodos.Mvc.Controllers
 
                 model.Usuario.Ativo = true;
 
-                _client.AdicionarUsuario(model.Usuario);
+                _client.Usuario.Add(model.Usuario);
                 return RedirectToAction("Index", "Usuarios");
             }
             else
@@ -59,7 +59,7 @@ namespace CartaoTodos.Mvc.Controllers
         }
         public ActionResult Detalhes(int id)
         {
-            var usuario = _client.ObterUsuario(id);
+            var usuario = _client.Usuario.Get(id).Data;
 
             if (usuario == null)
             {
@@ -75,7 +75,7 @@ namespace CartaoTodos.Mvc.Controllers
         public ActionResult Editar(int id)
         {
             var model = new CadastroUsuarioViewModel();
-            model.Usuario = _client.ObterUsuario(id);
+            model.Usuario = _client.Usuario.Get(id).Data;
 
             if (model.Usuario == null)
             {
@@ -84,7 +84,7 @@ namespace CartaoTodos.Mvc.Controllers
             }
             else
             {
-                model.Perfis = _client.ObterPerfis();
+                model.Perfis = _client.Perfil.GetAll().Data;
                 TempData["Perfis"] = model.Perfis;
                 return View(model);
             }
@@ -98,7 +98,7 @@ namespace CartaoTodos.Mvc.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    _client.EditarUsuario(model.Usuario);
+                    _client.Usuario.Update(model.Usuario.Id, model.Usuario);
                     return RedirectToAction("Index");
                 }
                 else
@@ -120,7 +120,7 @@ namespace CartaoTodos.Mvc.Controllers
 
         public ActionResult Excluir(int id)
         {
-            var usuario = _client.ObterUsuario(id);
+            var usuario = _client.Usuario.Get(id).Data;
 
             if (usuario == null)
             {
@@ -138,7 +138,7 @@ namespace CartaoTodos.Mvc.Controllers
         {
             try
             {
-                _client.ExcluirUsuario(model.Id);
+                _client.Usuario.Remove(model.Id);
                 return RedirectToAction("Index", "Usuarios");
             }
             catch (Exception ex)
@@ -152,7 +152,8 @@ namespace CartaoTodos.Mvc.Controllers
         {
             try
             {
-                _client.AdicionarPerfil(usuarioId, perfilId);
+                var novoPerfil = new Perfil() { Id = perfilId };
+                _client.PerfilUsuario.VincularPerfil(usuarioId, novoPerfil);
                 return new HttpStatusCodeResult(HttpStatusCode.OK);
             }
             catch (Exception ex)
@@ -166,7 +167,7 @@ namespace CartaoTodos.Mvc.Controllers
         {
             try
             {
-                _client.RemoverPerfil(usuarioId, perfilId);
+                _client.PerfilUsuario.DesvincularPerfil(usuarioId, perfilId);
                 return new HttpStatusCodeResult(HttpStatusCode.OK);
             }
             catch (Exception ex)

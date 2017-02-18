@@ -1,5 +1,6 @@
 ﻿using CartaoTodos.REST.Common;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
 namespace CartaoTodos.Mvc.Models
@@ -8,6 +9,7 @@ namespace CartaoTodos.Mvc.Models
     {
         public Usuario Usuario { get; set; }
 
+        [Display(Name ="Perfis")]
         public int[] PerfisUsuario { get; set; }
 
         public IEnumerable<Perfil> Perfis { get; set; }

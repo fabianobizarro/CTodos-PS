@@ -4,31 +4,40 @@
     ViewBag.Title = "Detalhes";
 }
 
-<h2>Detalhes</h2>
+<div class="panel">
 
-<div>
-    <h4>Perfil</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
+    <div class="panel-body">
 
-        <dd>
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
+        <h4>Detalhes</h4>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Ativo)
-        </dt>
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Ativo)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Nome)
+                </dd>
 
-    </dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Ativo)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Ativo)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Editar", "Editar", new { id = Model.Id }, new { @class = "btn btn-warning" }) |
+            @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-default" })
+        </p>
+
+
+    </div>
+
 </div>
-<p>
-    @Html.ActionLink("Editar", "Editar", new { id = Model.Id }, new { @class = "btn btn-warning"}) |
-    @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-default" })
-</p>
+

@@ -4,80 +4,88 @@
     ViewBag.Title = "Excluir";
 }
 
-<h2>Excluir</h2>
+<div class="panel">
+    <div class="panel-body">
 
-<h3>Deseja excluir este usuário?</h3>
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Login)
-        </dt>
+        <h4>Excluir</h4>
 
-        <dd>
-            @Html.DisplayFor(model => model.Login)
-        </dd>
+        <h5>Deseja excluir este usuário?</h5>
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Login)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Login)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Nome)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Senha)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Senha)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Senha)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Ativo)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Senha)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Ativo)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Ativo)
+                </dt>
 
-        @if (Model.Perfis != null)
-        {
-            <dt>Perfis</dt>
-            <dd>
-                <ul>
-                    @foreach (var perfil in Model.Perfis)
-                    {
-                        <li>@perfil.Nome</li>
-                    }
-                </ul>
+                <dd>
+                    @Html.DisplayFor(model => model.Ativo)
+                </dd>
 
-            </dd>
-        }
+                @if (Model.Perfis != null)
+                {
+                    <dt>Perfis</dt>
+                    <dd>
+                        <ul>
+                            @foreach (var perfil in Model.Perfis)
+                            {
+                                <li>@perfil.Nome</li>
+                            }
+                        </ul>
 
-    </dl>
+                    </dd>
+                }
 
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        @Html.HiddenFor(p => p.Nome)
-        @Html.HiddenFor(p => p.Login)
-        @Html.HiddenFor(p => p.Email)
-        @Html.HiddenFor(p => p.Senha)
-        @Html.HiddenFor(p => p.Ativo)
+            </dl>
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Excluir" class="btn btn-danger" /> |
-            @Html.ActionLink("Voltar", "Index")
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(p => p.Nome)
+                @Html.HiddenFor(p => p.Login)
+                @Html.HiddenFor(p => p.Email)
+                @Html.HiddenFor(p => p.Senha)
+                @Html.HiddenFor(p => p.Ativo)
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Excluir" class="btn btn-danger" /> |
+                    @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-default" })
+                </div>
+            }
         </div>
-    }
+
+
+    </div>
 </div>
+

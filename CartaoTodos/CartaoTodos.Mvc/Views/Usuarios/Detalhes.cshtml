@@ -1,80 +1,69 @@
 ﻿@model CartaoTodos.REST.Common.Usuario
-
 @{
     ViewBag.Title = "Detalhes";
 }
+<div class="panel">
+    <div class="panel-body">
 
-<h2>Detalhes</h2>
-
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Login)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Login)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Senha)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Senha)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Ativo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Ativo)
-        </dd>
-
-        @if (Model.Perfis != null)
+        <h4>Detalhes</h4>
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Login)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Login)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Nome)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Senha)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Senha)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Ativo)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Ativo)
+                </dd>
+                @if (Model.Perfis != null)
         {
-            <dt>
-                @Html.DisplayNameFor(p => p.Perfis)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(p => p.Perfis)
+        </dt>
 
-            <dd>
-                <ul>
-                    @foreach (var perfil in Model.Perfis)
+        <dd>
+            <ul>
+                @foreach (var perfil in Model.Perfis)
                     {
-                        <li>@perfil.Nome</li>
+                    <li>@perfil.Nome</li>
                     }
-                </ul>
-
-            </dd>
+            </ul>
+        </dd>
         }
 
-
-    </dl>
-</div>
-<div class="row">
-    <div class="col-md-offset-1 col-ms-4">
-        <p>
-            @Html.ActionLink("Editar", "Editar", new { id = Model.Id }, new { @class = "btn btn-warning" }) |
-            @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-default" })
-        </p>
+            </dl>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-1 col-ms-4">
+                <p>
+                    @Html.ActionLink("Editar", "Editar", new { id = Model.Id }, new { @class = "btn btn-warning" }) |
+                    @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-default" })
+                </p>
+            </div>
+        </div>
     </div>
 </div>
-
