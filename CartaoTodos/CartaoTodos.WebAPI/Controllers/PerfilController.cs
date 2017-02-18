@@ -47,7 +47,7 @@ namespace CartaoTodos.WebAPI.Controllers
             if (ModelState.IsValid)
             {
                 _service.Add(perfil);
-                return Ok();
+                return Ok("Perfil Cadastrado");
             }
             else
                 return BadRequest(ModelState);
