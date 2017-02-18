@@ -13,7 +13,7 @@ export class PerfilComponent implements OnInit {
   constructor(private service: PerfilService) { }
 
   ngOnInit() {
-    this.service.obterPerfis()
+    this.service.obterPerfis(true)
       .then(result => {
         this.perfis = result;
       }, err => {

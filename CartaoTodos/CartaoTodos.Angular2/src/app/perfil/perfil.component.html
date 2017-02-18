@@ -1,5 +1,9 @@
 <h3>Perfis</h3>
 
+<p>
+  <a routerLink="/perfil/novo" class="btn btn-success">Novo Perfil</a>
+</p>
+
 <div class="row">
   <div class="col-md-12">
     <table class="table table-striped">
@@ -8,6 +12,7 @@
           <th>Id</th>
           <th>Nome</th>
           <th>Ativo</th>
+          <th>Opções</th>
         </tr>
       </thead>
       <tbody>
@@ -15,6 +20,9 @@
           <td>{{perfil.Id}}</td>
           <td>{{perfil.Nome}}</td>
           <td>{{perfil.Ativo ? "Sim" : "Não"}}</td>
+          <td>
+            <a routerLink="/perfil/{{perfil.Id}}/editar">Editar</a>
+          </td>
         </tr>
       </tbody>
     </table>

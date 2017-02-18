@@ -16,6 +16,8 @@ import { UsuarioService } from './usuario.service';
 import { PerfilService } from './perfil.service';
 import { DetalhesUsuarioComponent } from './detalhes-usuario/detalhes-usuario.component';
 import { EditarUsuarioComponent } from './editar-usuario/editar-usuario.component';
+import { NovoPerfilComponent } from './novo-perfil/novo-perfil.component';
+import { EditarPerfilComponent } from './editar-perfil/editar-perfil.component';
 
 @NgModule({
     declarations: [
@@ -25,7 +27,9 @@ import { EditarUsuarioComponent } from './editar-usuario/editar-usuario.componen
         NovoUsuarioComponent,
         PerfilComponent,
         DetalhesUsuarioComponent,
-        EditarUsuarioComponent
+        EditarUsuarioComponent,
+        NovoPerfilComponent,
+        EditarPerfilComponent
     ],
     imports: [
         AppRoutingModule,
