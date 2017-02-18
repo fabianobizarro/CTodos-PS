@@ -21,18 +21,18 @@ namespace CartaoTodos.WebForms
                 {
                     _container = DIContainer.GetContainer();
                     // Registrando a interface do cliente REST
-                    _container.Register<IApiRestClient, ApiRestClient>();
+                    _container.Register<IApiClient, ApiClient>();
                 }
 
                 return _container;
             }
         }
 
-        protected IApiRestClient _apiClient;
+        protected IApiClient _apiClient;
 
         public BasePage()
         {
-            _apiClient = DI.GetInstance<IApiRestClient>();
+            _apiClient = DI.GetInstance<IApiClient>();
         }
     }
 }
