@@ -32,6 +32,7 @@ namespace CartaoTodos.Mvc.App_Start
         {
             // For instance:
             container.Register<IApiRestClient, ApiRestClient>();
+            container.Register<IApiClient, ApiClient>();
         }
     }
 }
