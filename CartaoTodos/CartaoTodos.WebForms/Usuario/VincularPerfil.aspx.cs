@@ -7,17 +7,17 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace CartaoTodos.WebForms
+namespace CartaoTodos.WebForms.Usuario
 {
     public partial class VincularPerfil : BasePage
     {
-        protected Usuario Usuario = new Usuario();
+        protected REST.Common.Usuario Usuario = new REST.Common.Usuario();
         protected IEnumerable<REST.Common.Perfil> ListaPerfis;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             int idUsuario = Convert.ToInt32(Request.QueryString["idUsuario"]);
-            Usuario = _apiClient.ObterUsuario(idUsuario);
+            Usuario = _apiClient.Usuario.Get(idUsuario).Data;
 
             if (!IsPostBack)
             {
@@ -27,7 +27,7 @@ namespace CartaoTodos.WebForms
                 }
                 else
                 {
-                    ListaPerfis = _apiClient.ObterPerfis();
+                    ListaPerfis = _apiClient.Perfil.GetAll().Data;
 
                     listBoxPerfis.DataSource = ListaPerfis.Except(Usuario.Perfis, new PerfilComparer());
                     listBoxPerfis.DataTextField = "Nome";
@@ -44,9 +44,12 @@ namespace CartaoTodos.WebForms
 
         protected void btAdicionarPerfil_Click(object sender, EventArgs e)
         {
-            var perfilSelecionado = Convert.ToInt32(listBoxPerfis.SelectedItem.Value);
+            var perfilSelecionado = new REST.Common.Perfil()
+            {
+                Id = Convert.ToInt32(listBoxPerfis.SelectedItem.Value)
+            };
 
-            _apiClient.AdicionarPerfil(Usuario.Id, perfilSelecionado);
+            var response = _apiClient.PerfilUsuario.VincularPerfil(Usuario.Id, perfilSelecionado);
 
             Response.Redirect(Request.RawUrl);
         }
@@ -55,7 +58,7 @@ namespace CartaoTodos.WebForms
         {
             var perfilSelecionado = Convert.ToInt32(radioListPerfis.SelectedItem.Value);
 
-            _apiClient.RemoverPerfil(Usuario.Id, perfilSelecionado);
+            var response = _apiClient.PerfilUsuario.DesvincularPerfil(Usuario.Id, perfilSelecionado);
 
             Response.Redirect(Request.RawUrl);
         }

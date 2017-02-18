@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CartaoTodos.WebForms {
+namespace CartaoTodos.WebForms.Perfil {
     
     
-    public partial class EditarPerfil {
+    public partial class Novo {
         
         /// <summary>
         /// Nome control.
@@ -31,21 +31,12 @@ namespace CartaoTodos.WebForms {
         protected global::System.Web.UI.WebControls.CheckBox Ativo;
         
         /// <summary>
-        /// IdPerfil control.
+        /// btCadastrarPerfil control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField IdPerfil;
-        
-        /// <summary>
-        /// btEditarPerfil control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btEditarPerfil;
+        protected global::System.Web.UI.WebControls.Button btCadastrarPerfil;
     }
 }

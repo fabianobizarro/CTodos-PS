@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace CartaoTodos.WebForms
+namespace CartaoTodos.WebForms.Perfil
 {
-    public partial class NovoPerfil : BasePage
+    public partial class Novo : BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -22,7 +22,7 @@ namespace CartaoTodos.WebForms
                 Ativo = Ativo.Checked
             };
 
-            _apiClient.AdicionarPerfil(perfil);
+            var response = _apiClient.Perfil.Add(perfil);
 
             Response.Redirect("/Perfil");
         }

@@ -6,9 +6,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace CartaoTodos.WebForms
+namespace CartaoTodos.WebForms.Pages.Usuario
 {
-    public partial class NovoUsuario : BasePage
+    public partial class Novo : BasePage
     {
         public IEnumerable<CartaoTodos.REST.Common.Perfil> ListaPerfis;
 
@@ -16,7 +16,7 @@ namespace CartaoTodos.WebForms
         {
             if (!IsPostBack)
             {
-                var listaPerfil = _apiClient.ObterPerfis();
+                var listaPerfil = _apiClient.Perfil.GetAll().Data;
 
                 foreach (var perfil in listaPerfil)
                     Perfis.Items.Add(new ListItem(perfil.Nome, perfil.Id.ToString()));
@@ -41,7 +41,7 @@ namespace CartaoTodos.WebForms
                 }
                 //var perfisSelecionado = Perfis.Items;
 
-                var usuario = new Usuario()
+                var usuario = new REST.Common.Usuario()
                 {
                     Nome = Nome.Text,
                     Email = Email.Text,
@@ -50,7 +50,7 @@ namespace CartaoTodos.WebForms
                     Perfis = perfisSelecionados
                 };
 
-                _apiClient.AdicionarUsuario(usuario);
+                var response = _apiClient.Usuario.Add(usuario);
 
                 Response.Redirect("/Usuarios");
 

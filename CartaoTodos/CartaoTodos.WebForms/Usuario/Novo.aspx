@@ -1,8 +1,12 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="NovoUsuario.aspx.cs" Inherits="CartaoTodos.WebForms.NovoUsuario" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Novo.aspx.cs" Inherits="CartaoTodos.WebForms.Pages.Usuario.Novo" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     
-    <h3>Cadastrar usuário</h3>
+<div class="panel">
+
+    <div class="panel-body">
+
+    <h4>Cadastrar usuário</h4>
 
     <div class="form-horizontal">
             <hr />
@@ -50,10 +54,14 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <asp:Button class="btn btn-success" ID="btCadastrarUsuario" Text="Cadastrar" runat="server" OnClick="btCadastrarUsuario_Click"/>
-                    <a href="/Usuarios" class="btn btn-default">Voltar</a>
+                    <asp:Button class="btn btn-success" ID="btCadastrarUsuario" Text="Cadastrar" runat="server" OnClick="btCadastrarUsuario_Click"/> | 
+                    <a href="/Usuario" class="btn btn-default">Voltar</a>
                 </div>
             </div>
         </div>
+
+  	</div>
+
+</div>
 
 </asp:Content>

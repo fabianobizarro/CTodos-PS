@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CartaoTodos.WebForms {
+namespace CartaoTodos.WebForms.Perfil {
     
     
-    public partial class Perfil {
+    public partial class Default {
     }
 }

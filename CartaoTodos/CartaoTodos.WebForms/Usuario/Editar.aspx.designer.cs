@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CartaoTodos.WebForms {
+namespace CartaoTodos.WebForms.Usuario {
     
     
-    public partial class EditarUsuario {
+    public partial class Editar {
         
         /// <summary>
         /// Nome control.

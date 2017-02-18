@@ -6,14 +6,12 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace CartaoTodos.WebForms
+namespace CartaoTodos.WebForms.Usuario
 {
-    public partial class DetalhesUsuario : BasePage
+    public partial class Detalhes : BasePage
     {
-        //public IEnumerable<CartaoTodos.REST.Common.Perfil> PerfisUsuario;
-
         protected int Id;
-        protected Usuario Usuario;
+        protected REST.Common.Usuario Usuario;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,7 +22,7 @@ namespace CartaoTodos.WebForms
                 Response.Redirect("/Home");
             }
 
-            Usuario = _apiClient.ObterUsuario(idUsuario.GetValueOrDefault());
+            Usuario = _apiClient.Usuario.Get(idUsuario.GetValueOrDefault()).Data;
         }
     }
 }

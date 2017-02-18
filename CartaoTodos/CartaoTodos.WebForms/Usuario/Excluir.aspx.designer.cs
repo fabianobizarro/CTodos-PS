@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CartaoTodos.WebForms {
+namespace CartaoTodos.WebForms.Usuario {
     
     
-    public partial class ExcluirUsuario {
+    public partial class Excluir {
         
         /// <summary>
         /// IdUsuario control.

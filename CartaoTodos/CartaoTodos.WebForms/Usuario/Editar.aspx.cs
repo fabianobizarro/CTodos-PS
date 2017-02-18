@@ -6,11 +6,11 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace CartaoTodos.WebForms
+namespace CartaoTodos.WebForms.Usuario
 {
-    public partial class EditarUsuario : BasePage
+    public partial class Editar : BasePage
     {
-        protected Usuario Usuario;
+        protected REST.Common.Usuario Usuario;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -18,7 +18,7 @@ namespace CartaoTodos.WebForms
             {
                 var id = Convert.ToInt32(Request.QueryString["id"]);
 
-                Usuario = _apiClient.ObterUsuario(id);
+                Usuario = _apiClient.Usuario.Get(id).Data;
 
                 if (Usuario == null)
                 {
@@ -41,7 +41,7 @@ namespace CartaoTodos.WebForms
 
             if (formularioValido)
             {
-                var usuario = new Usuario()
+                var usuario = new REST.Common.Usuario()
                 {
                     Id = Convert.ToInt32(IdUsuario.Value),
                     Nome = Nome.Text,
@@ -50,7 +50,7 @@ namespace CartaoTodos.WebForms
                     Senha = Senha.Text
                 };
 
-                _apiClient.EditarUsuario(usuario);
+                var response = _apiClient.Usuario.Update(usuario.Id, usuario);
 
                 Response.Redirect("/Usuarios");
             }

@@ -8,15 +8,17 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace CartaoTodos.WebForms
+namespace CartaoTodos.WebForms.Perfil
 {
-    public partial class Perfil : BasePage
+    public partial class Default : BasePage
     {
         public IEnumerable<CartaoTodos.REST.Common.Perfil> Perfis { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Perfis = _apiClient.ObterPerfis(todos: true);
+            Perfis = _apiClient.Perfil.ObterPErfis(todos: true).Data;
+            if (Perfis == null)
+                Perfis = new List<REST.Common.Perfil>();
         }
     }
 }

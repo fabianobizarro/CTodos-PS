@@ -6,15 +6,15 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace CartaoTodos.WebForms.Pages
+namespace CartaoTodos.WebForms.Usuario
 {
-    public partial class Usuarios : BasePage
+    public partial class Default : BasePage
     {
-        public IEnumerable<Usuario> ListaUsuarios { get; set; }
+        public IEnumerable<REST.Common.Usuario> ListaUsuarios { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            ListaUsuarios = _apiClient.ObterUsuarios();
+            ListaUsuarios = _apiClient.Usuario.GetAll().Data;
         }
     }
 }

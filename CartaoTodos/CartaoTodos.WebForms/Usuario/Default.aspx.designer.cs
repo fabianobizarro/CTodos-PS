@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CartaoTodos.WebForms {
+namespace CartaoTodos.WebForms.Usuario {
     
     
-    public partial class DetalhesUsuario {
+    public partial class Default {
     }
 }

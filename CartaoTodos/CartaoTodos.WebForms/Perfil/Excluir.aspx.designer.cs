@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CartaoTodos.WebForms {
+namespace CartaoTodos.WebForms.Perfil {
     
     
-    public partial class ExcluirPerfil {
+    public partial class Excluir {
         
         /// <summary>
         /// IdPerdil control.

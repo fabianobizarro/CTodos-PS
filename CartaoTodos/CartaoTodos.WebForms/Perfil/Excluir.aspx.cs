@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace CartaoTodos.WebForms
+namespace CartaoTodos.WebForms.Perfil
 {
-    public partial class ExcluirPerfil : BasePage
+    public partial class Excluir : BasePage
     {
         protected REST.Common.Perfil Perfil;
 
@@ -16,7 +16,7 @@ namespace CartaoTodos.WebForms
             if (!IsPostBack)
             {
                 int idPerfil = Convert.ToInt32(Request.QueryString["id"]);
-                Perfil = _apiClient.ObterPerfil(idPerfil);
+                Perfil = _apiClient.Perfil.Get(idPerfil).Data;
 
                 if (Perfil == null)
                     Response.Redirect("/Perfil");
@@ -29,7 +29,7 @@ namespace CartaoTodos.WebForms
         {
             int id = Convert.ToInt32(IdPerdil.Value);
 
-            _apiClient.RemoverPerfil(id);
+            var response = _apiClient.Perfil.Remove(id);
 
             Response.Redirect("/Perfil");
         }

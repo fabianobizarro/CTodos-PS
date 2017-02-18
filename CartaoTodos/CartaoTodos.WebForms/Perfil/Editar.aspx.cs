@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace CartaoTodos.WebForms
+namespace CartaoTodos.WebForms.Perfil
 {
-    public partial class EditarPerfil : BasePage
+    public partial class Editar : BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -15,7 +15,7 @@ namespace CartaoTodos.WebForms
             {
                 int idPerfil = Convert.ToInt32(Request.QueryString["id"]);
 
-                var perfil = _apiClient.ObterPerfil(idPerfil);
+                var perfil = _apiClient.Perfil.Get(idPerfil).Data;
 
                 if (perfil == null)
                 {
@@ -42,7 +42,7 @@ namespace CartaoTodos.WebForms
                 Ativo = Ativo.Checked
             };
 
-            _apiClient.EditarPerfil(perfil);
+            var response = _apiClient.Perfil.Update(perfil.Id, perfil);
 
             Response.Redirect("/Perfil");
 
