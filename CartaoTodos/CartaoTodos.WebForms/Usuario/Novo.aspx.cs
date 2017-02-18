@@ -45,14 +45,14 @@ namespace CartaoTodos.WebForms.Pages.Usuario
                 {
                     Nome = Nome.Text,
                     Email = Email.Text,
-                    Login = Email.Text,
+                    Login = Login.Text,
                     Senha = Senha.Text,
                     Perfis = perfisSelecionados
                 };
 
                 var response = _apiClient.Usuario.Add(usuario);
 
-                Response.Redirect("/Usuarios");
+                Response.Redirect("/Usuario");
 
             }
         }

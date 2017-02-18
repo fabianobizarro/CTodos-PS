@@ -23,7 +23,7 @@ namespace CartaoTodos.WebForms.Usuario
             {
                 if (Usuario == null)
                 {
-                    Response.Redirect("/Usuarios");
+                    Response.Redirect("/Usuario");
                 }
                 else
                 {

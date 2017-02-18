@@ -22,7 +22,7 @@ namespace CartaoTodos.WebForms.Usuario
 
                 if (Usuario == null)
                 {
-                    Response.Redirect("/Usuarios");
+                    Response.Redirect("/Usuario");
                 }
                 else
                 {
@@ -52,7 +52,7 @@ namespace CartaoTodos.WebForms.Usuario
 
                 var response = _apiClient.Usuario.Update(usuario.Id, usuario);
 
-                Response.Redirect("/Usuarios");
+                Response.Redirect("/Usuario");
             }
         }
 

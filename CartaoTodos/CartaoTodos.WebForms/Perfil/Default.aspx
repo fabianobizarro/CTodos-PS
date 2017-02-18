@@ -14,12 +14,15 @@
         </p>
 
         <table class="table table-striped">
-            <tr>
-                <th>Id </th>
-                <th>Nome </th>
-                <th>Ativo </th>
-                <th>Opções</th>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Id </th>
+                    <th>Nome </th>
+                    <th>Ativo </th>
+                    <th>Opções</th>
+                </tr>
+            </thead>
+            <tbody>
             <% foreach (var perfil in Perfis) { %>
                 <tr>
                     <td><%= perfil.Id %></td>
@@ -31,6 +34,7 @@
                     </td>
                 </tr>
             <% } %>
+            </tbody>
         </table>
 
 

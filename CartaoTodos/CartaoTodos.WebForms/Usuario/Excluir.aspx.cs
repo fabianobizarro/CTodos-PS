@@ -21,7 +21,7 @@ namespace CartaoTodos.WebForms.Usuario
 
                 if (Usuario == null)
                 {
-                    Response.Redirect("/Usuarios");
+                    Response.Redirect("/Usuario");
                 }
                 else
                 {
@@ -36,7 +36,7 @@ namespace CartaoTodos.WebForms.Usuario
 
             var response = _apiClient.Usuario.Remove(id);
 
-            Response.Redirect("/Usuarios");
+            Response.Redirect("/Usuario");
         }
     }
 }

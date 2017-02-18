@@ -10,6 +10,7 @@
             <a href="/Usuario/Novo" class="btn btn-success btn-sm">Adicionar</a>
         </p>
         <table class="table table-striped">
+            <thead>
             <tr>
                 <th>
                     Login
@@ -25,7 +26,8 @@
                 </th>
                 <th>Opções</th>
             </tr>
-
+            </thead>
+            <tbody>
             <%if (ListaUsuarios != null) { %>
 
                 <% foreach (var usuario in ListaUsuarios) { %>
@@ -55,6 +57,8 @@
 
     
             <%} %>
+
+            </tbody>
 
         </table>
 
